@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../../Components/Navbar/Navbar";
-import NotificationModal from "../../Components/NotificationModal/NotificationModal";
-import ConfirmationModal from "../../Components/ConfirmationModal/ConfirmationModal";
+import Navbar from "../../components/Navbar/Navbar";
+import NotificationModal from "../../components/NotificationModal/NotificationModal";
+import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationModal";
 import { authAPI, classroomAPI, postAPI, notifyAuthChange } from "../../utils/api";
 
 import { socket, connectSocket, disconnectSocket } from "../../utils/socket";

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { examAPI } from "../../utils/api";
-import NotificationModal from "../../Components/NotificationModal/NotificationModal";
+import NotificationModal from "../../components/NotificationModal/NotificationModal";
 import "./StudentExams.css";
 
 const Icons = {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { examAPI } from "../../utils/api";
-import NotificationModal from "../../Components/NotificationModal/NotificationModal";
-import ConfirmationModal from "../../Components/ConfirmationModal/ConfirmationModal";
+import NotificationModal from "../../components/NotificationModal/NotificationModal";
+import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationModal";
 import "./TeacherExams.css";
 
 const Icons = {
