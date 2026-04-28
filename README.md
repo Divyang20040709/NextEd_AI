@@ -49,11 +49,11 @@ This project is built as a **final year engineering project** focusing on real-w
 ```bash
 NextEd_AI/
 │
-├── frontend/        # React frontend
-├── backend/         # Backend (Django/Flask)
-├── api/             # API routes
-├── models/          # AI/ML logic
-├── uploads/         # Uploaded files
+├── frontend/      
+├── backend/       
+├── api/           
+├── models/        
+├── uploads/       
 └── README.md
 ```
 
