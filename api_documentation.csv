@@ -1,0 +1,102 @@
+[BASE URL] , http://localhost:5000 , (SET THIS AS YOUR POSTMAN ENVIRONMENT VARIABLE)
+, , 
+"** API NAME **" , "** DESCRIPTION **" , "** ENDPOINT URL **" , "** METHOD **" , "** COMPULSORY ATTRIBUTES **"
+, , 
+"--- AUTHENTICATION APIs ---" , , , , 
+"Student Signup" , "Registers a new student account" , "/api/auth/signup/student" , "POST" , "name; mobileNumber; email; password; institutionName; studentId; programName; courseDepartment; year"
+"Student Login" , "Authenticates student and returns JWT token" , "/api/auth/login/student" , "POST" , "email; password"
+"Teacher Signup" , "Registers a new teacher (pending admin approval)" , "/api/auth/signup/teacher" , "POST" , "name; mobileNumber; email; password; institutionName; designation; department; subject"
+"Teacher Login" , "Authenticates teacher (only if approved and not banned)" , "/api/auth/login/teacher" , "POST" , "email; password"
+"Logout" , "Clears the user session" , "/api/auth/logout" , "POST" , "None"
+"Delete Account" , "Removes student or teacher account" , "/api/auth/delete-account" , "DELETE" , "email; role (student/teacher)"
+, , 
+"--- ADMIN APIs ---" , , , , 
+"Admin Signup" , "Creates a new admin account" , "/api/admin/signup" , "POST" , "name; mobileNumber; email; password; institutionName; designation; department"
+"Admin Login" , "Authenticates admin" , "/api/admin/login" , "POST" , "email; password"
+"Delete Admin Account" , "Permanently removes the admin profile" , "/api/admin/delete-account/:email" , "DELETE" , "email (params)"
+"Teacher Stats" , "Get counts of teachers by status" , "/api/admin/teacher-stats" , "GET" , "None (Requires JWT)"
+"Teacher Requests" , "List all pending teacher applications" , "/api/admin/teacher-requests" , "GET" , "None (Requires JWT)"
+"All Teachers" , "Get list of all approved teachers" , "/api/admin/all-teachers" , "GET" , "None"
+"Teacher Profile" , "Get full teacher details and classrooms" , "/api/admin/teacher/:teacherId" , "GET" , "teacherId (params)"
+"Approve Teacher" , "Approve a teacher's account" , "/api/admin/approve-teacher/:teacherId" , "PATCH" , "teacherId (params); approvalMessage (body)"
+"Reject Teacher" , "Reject teacher and clear record" , "/api/admin/reject-teacher/:teacherId" , "PATCH" , "teacherId (params); rejectedReason (body)"
+"Ban Teacher" , "Restrict teacher access" , "/api/admin/ban-teacher/:teacherId" , "PATCH" , "teacherId (params)"
+"Unban Teacher" , "Restore teacher access" , "/api/admin/unban-teacher/:teacherId" , "PATCH" , "teacherId (params)"
+"Delete Teacher" , "Remove teacher and their classrooms" , "/api/admin/delete-teacher/:teacherId" , "DELETE" , "teacherId (params)"
+"Banned Teachers" , "List all currently restricted teachers" , "/api/admin/banned-teachers" , "GET" , "None"
+"All Students" , "Get list of all registered students" , "/api/admin/all-students" , "GET" , "None"
+"Banned Students" , "List all currently restricted students" , "/api/admin/banned-students" , "GET" , "None"
+"Student Stats" , "Get counts of students by status" , "/api/admin/student-stats" , "GET" , "None"
+"Student Requests" , "List all pending student applications" , "/api/admin/student-requests" , "GET" , "None"
+"Approve Student" , "Approve a student's account" , "/api/admin/approve-student/:studentId" , "PATCH" , "studentId (params)"
+"Reject Student" , "Reject student and clear record" , "/api/admin/reject-student/:studentId" , "PATCH" , "studentId (params)"
+"Student Profile" , "Get full student details and history" , "/api/admin/student/:studentId" , "GET" , "studentId (params)"
+"Ban Student" , "Restrict student access" , "/api/admin/ban-student/:studentId" , "PATCH" , "studentId (params)"
+"Unban Student" , "Restore student access" , "/api/admin/unban-student/:studentId" , "PATCH" , "studentId (params)"
+"Delete Student" , "Remove student record" , "/api/admin/delete-student/:studentId" , "DELETE" , "studentId (params)"
+"Delete Classroom (Admin)" , "Admin can delete any classroom" , "/api/admin/classroom/:classroomId" , "DELETE" , "classroomId (params)"
+"Classroom Posts (Admin)" , "Get all posts for any classroom" , "/api/admin/classroom/:classroomId/posts" , "GET" , "classroomId (params)"
+"Classroom Students" , "Get list of students in a classroom" , "/api/admin/classroom/:classroomId/students" , "GET" , "classroomId (params)"
+"Create Post (Admin)" , "Broadcast announcement to classroom" , "/api/admin/classroom/:classroomId/post" , "POST" , "classroomId (params); title; description; videoLink (opt); files (opt); allowStudentUpload (opt)"
+"Update Post (Admin)" , "Modify a post as admin" , "/api/admin/post/:postId" , "PUT" , "postId (params); title; description; videoLink (opt); files (opt); allowStudentUpload (opt)"
+"Delete Post (Admin)" , "Remove a post as admin" , "/api/admin/post/:postId" , "DELETE" , "postId (params)"
+"All Global Posts" , "Retrieves all posts globally across all classrooms for Super Admin view" , "/api/admin/all-posts" , "GET" , "None (Requires Admin JWT)"
+"All Global Exams" , "Retrieves all exams globally across all classrooms for Super Admin view" , "/api/admin/all-exams" , "GET" , "None (Requires Admin JWT)"
+, , 
+"--- TEACHER APIs ---" , , , , 
+"Resend Request" , "Resend approval request after rejection" , "/api/teacher/resend-request/:teacherId" , "PATCH" , "teacherId (params)"
+, , 
+"--- CLASSROOM & POST APIs ---" , , , , 
+"Create Classroom" , "Creates a virtual classroom (Teacher)" , "/api/classroom/create" , "POST" , "subject; classGrade; division; teacherEmail; teacherName"
+"Join Classroom" , "Enrolls a student via code" , "/api/classroom/join" , "POST" , "code; studentEmail; studentName"
+"Leave Classroom" , "Student unenrolls from classroom" , "/api/classroom/leave" , "POST" , "classroomId; studentEmail"
+"Teacher Classrooms" , "Gets all classes owned by teacher" , "/api/classroom/teacher/:teacherEmail" , "GET" , "teacherEmail (params)"
+"Get Classroom" , "Fetch classroom details by ID" , "/api/classroom/:id" , "GET" , "id (params)"
+"Delete Classroom" , "Teacher deletes their own classroom" , "/api/classroom/:id" , "DELETE" , "id (params); teacherEmail (body)"
+"Student Classrooms" , "Get all classes student is enrolled in" , "/api/classroom/student/:studentEmail" , "GET" , "studentEmail (params)"
+"Create Post" , "Broadcast material to classroom" , "/api/post/create" , "POST" , "classroomId; title; description; teacherName; videoLink (opt); files (opt); allowStudentUpload (opt)"
+"Get Posts" , "Fetch all posts for a classroom" , "/api/post/classroom/:classroomId" , "GET" , "classroomId (params)"
+"Update Post" , "Modify an existing classroom post" , "/api/post/:id" , "PUT" , "id (params); title; description; videoLink (opt); files (opt); allowStudentUpload (opt)"
+"Delete Post" , "Soft-delete a post" , "/api/post/:id" , "DELETE" , "id (params); deletedBy"
+, , 
+"--- EXAM APIs ---" , , , , 
+"Create Exam" , "Creates a new exam for a classroom" , "/api/exams/create" , "POST" , "classroomId; teacherName; examName; subject; questions"
+"Classroom Exams" , "Get all exams for a classroom" , "/api/exams/classroom/:classroomId" , "GET" , "classroomId (params)"
+"Get Exam" , "Fetch single exam details" , "/api/exams/:examId" , "GET" , "examId (params)"
+"Delete Exam" , "Delete an exam and its submissions" , "/api/exams/:examId" , "DELETE" , "examId (params)"
+"Exam Submissions" , "Get all student results for an exam" , "/api/exams/:examId/submissions" , "GET" , "examId (params)"
+"Submit Exam" , "Record student performance" , "/api/exams/submit" , "POST" , "examId; studentId; studentName; rollNumber; answers"
+"Student Results" , "Get all exam attempts for a student" , "/api/exams/student-submissions/:studentEmail" , "GET" , "studentEmail (params)"
+, , 
+"--- SUBMISSION APIs ---" , , , , 
+"Post Submission" , "Student submits work for a post" , "/api/submission/submit" , "POST" , "postId; studentId; studentName; message; files"
+"Get Submissions" , "Teacher gets all submissions for a post" , "/api/submission/post/:postId" , "GET" , "postId (params)"
+"Specific Submission" , "Get a single student's submission for a post" , "/api/submission/post/:postId/student/:studentId" , "GET" , "postId (params); studentId (params)"
+, , 
+"--- CHATBOT & STUDY TIPS APIs ---" , , , , 
+"AI Chat" , "Send message to NextEd AI Assistant" , "/api/chat" , "POST" , "chatId; message; userId"
+"Get History" , "Fetches chat sessions for a user" , "/api/history" , "GET" , "userId (query)"
+"Create History" , "Starts a new chat session" , "/api/history" , "POST" , "userId (body)"
+"Delete History" , "Deletes a specific chat session" , "/api/history/:id" , "DELETE" , "id (params)"
+"Get Study Tips" , "Retrieve saved study tips sessions" , "/api/study-tips" , "GET" , "userId (query)"
+"Generate Study Tips" , "Analyzes history and provides personalized tips" , "/api/study-tips" , "POST" , "userId (body)"
+"Delete Study Tip" , "Remove a specific tip session" , "/api/study-tips/:id" , "DELETE" , "id (params)"
+, , 
+"--- AI TUTOR (VOICE) APIs ---" , , , , 
+"Tutor Chat" , "Chat with the Talking AI Tutor" , "/api/aitutor/chat" , "POST" , "chatId; message; language; userId"
+"Tutor History" , "Get voice tutor sessions for user" , "/api/aitutor/history" , "GET" , "userId (query)"
+"Create Tutor Session" , "Starts a new tutor record" , "/api/aitutor/history" , "POST" , "userId (body)"
+"Delete Tutor Session" , "Deletes a voice tutor session" , "/api/aitutor/history/:id" , "DELETE" , "id (params)"
+, , 
+"--- KNOWLEDGE BASE APIs ---" , , , , 
+"Fetch Knowledge" , "Returns all uploaded materials" , "/api/knowledge" , "GET" , "None"
+"Upload Knowledge" , "Upload PDF/DOCX/Text context for AI" , "/api/knowledge" , "POST" , "title; details; files (Multipart Form Data)"
+"Delete Knowledge" , "Remove a material" , "/api/knowledge/:id" , "DELETE" , "id (params)"
+, , 
+"--- POSTMAN USAGE GUIDE ---" , , , , 
+"1. Set Environment" , "Create a new Postman Environment and add a variable 'base_url' with value 'http://localhost:5000'" , , , 
+"2. Header Configuration" , "For most POST requests; add 'Content-Type: application/json' in Headers" , , , 
+"3. JSON Body" , "Select 'Body' -> 'raw' -> 'JSON' to enter the compulsory attributes as key-value pairs" , , , 
+"4. Form-Data" , "For Knowledge Upload; use 'form-data' and select 'file' type for the 'files' key" , , , 
+"5. Parameters" , "For URLs with :id; replace it with the actual MongoDB ID" , , , 
+"6. Authentication" , "For Admin/Teacher routes; add the JWT token in 'Authorization' -> 'Bearer Token'" , , , 

@@ -1,0 +1,60 @@
+/* Import shared styles from TeacherClassroom */
+@import '../TeacherClassroom/TeacherClassroom.css';
+
+/* Desktop - hide mobile toggle */
+@media (min-width: 1025px) {
+    .mobile-menu-toggle {
+        display: none;
+    }
+}
+
+/* Student-specific overrides */
+.post-card {
+    border-left: 5px solid #12B1D1; /* Different accent color for student */
+}
+
+/* Search Bar Styles */
+.table-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--light-bg, #f4f7fb);
+  border-radius: 12px;
+  padding: 10px 16px;
+  border: 1px solid rgba(16, 137, 211, 0.08);
+  transition: all 0.3s ease;
+}
+.table-search:focus-within {
+  border-color: rgba(16, 137, 211, 0.25);
+  box-shadow: 0 0 0 4px rgba(16, 137, 211, 0.06);
+}
+.table-search svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--muted-text, #aaaaaa);
+  flex-shrink: 0;
+}
+.table-search input {
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--primary-text, #000000);
+  outline: none;
+  width: 180px;
+}
+.table-search input::placeholder {
+  color: var(--muted-text, #aaaaaa);
+}
+
+@media (max-width: 768px) {
+  .table-search {
+    width: 100%;
+    margin-top: 10px;
+  }
+  .table-search input {
+    width: 100%;
+  }
+}
+
+/* All mobile responsiveness is inherited from TeacherClassroom.css */

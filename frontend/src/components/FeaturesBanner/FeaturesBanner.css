@@ -1,0 +1,216 @@
+/* Floating Features Section */
+.features-section {
+  width: 95%;
+  max-width: 1400px;
+  margin: 20px auto;
+  background: #ffffff;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-float);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  position: relative;
+  overflow: hidden;
+  z-index: 10; /* Above fog */
+}
+
+.section-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.section-header {
+  text-align: center;
+}
+
+.section-heading {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #000000;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+
+.section-subtitle {
+  font-size: 18px;
+  color: var(--text-placeholder);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.brand-highlight {
+  background: var(--button-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.features-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  align-items: stretch; /* Match column heights */
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.feature-card {
+  background: var(--card-bg); /* Inner card can keep weak bg */
+  border-radius: 24px;       /* Slightly smaller inner radius */
+  padding: 32px;
+  box-shadow: 0 10px 30px rgba(16, 137, 211, 0.1); /* Subtle blue glow */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(16, 137, 211, 0.2); /* Stronger glow */
+}
+
+.feature-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #000000;
+  line-height: 1.3;
+}
+
+.feature-description {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-placeholder);
+  font-weight: 400;
+}
+
+.highlighted-features {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Spread cards to match left side height */
+  gap: 24px;
+}
+
+.highlight-card {
+  background: var(--card-bg);
+  border-radius: 28px;
+  padding: 40px;
+  box-shadow: 0 12px 40px rgba(16, 137, 211, 0.1); /* Subtle blue glow */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1; /* Allow cards to grow to fill space equally */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.highlight-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 50px rgba(16, 137, 211, 0.2); /* Stronger glow */
+}
+
+.highlight-icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.highlight-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000000;
+  line-height: 1.3;
+}
+
+.highlight-description {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-placeholder);
+  font-weight: 400;
+}
+
+.highlight-button {
+  background: var(--button-gradient);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 32px;
+  border: none;
+  border-radius: var(--radius-button); /* Pill */
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 20px var(--shadow-base);
+  align-self: flex-start;
+}
+
+.highlight-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(16, 137, 211, 0.35);
+}
+
+.highlight-button:active {
+  transform: scale(0.98);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .features-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .features-section {
+    width: 94%;
+    margin: 15px auto;
+    padding: 60px 24px;
+    border-radius: 24px;
+  }
+
+  .section-heading {
+    font-size: 36px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card,
+  .highlight-card {
+    padding: 28px;
+  }
+
+  .highlight-button {
+    width: 100%;
+    text-align: center;
+  }
+}

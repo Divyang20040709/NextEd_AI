@@ -1,0 +1,175 @@
+/* Floating Comparison Section */
+.comparison-section {
+  width: 95%;
+  max-width: 1400px;
+  margin: 20px auto;
+  background: #ffffff;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-float);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  font-family: var(--font-family);
+  position: relative;
+  z-index: 10; /* Above fog */
+}
+
+.section-container {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.section-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section-heading {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #000000;
+  letter-spacing: -0.5px;
+}
+
+.brand-highlight {
+  background: var(--button-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-subtext {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text-placeholder);
+  font-weight: 400;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  width: 100%;
+}
+
+.comparison-card {
+  background: var(--card-bg);
+  border-radius: 24px;
+  padding: 48px;
+  box-shadow: 0 12px 40px rgba(16, 137, 211, 0.1); /* Blue glow */
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.comparison-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(16, 137, 211, 0.12);
+}
+
+.card-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #000000;
+  padding-bottom: 20px;
+  border-bottom: 2px solid rgba(16, 137, 211, 0.1);
+}
+
+.card-title.gradient-title {
+  background: var(--button-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.points-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.point-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.point-icon {
+  min-width: 32px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.point-text {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #000000;
+  font-weight: 500;
+}
+
+.problems-card .point-icon svg {
+  stroke: var(--primary-blue);
+}
+
+.solutions-card .point-icon svg {
+  stroke: var(--primary-blue);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .section-heading {
+    font-size: 40px;
+  }
+
+  .comparison-card {
+    padding: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .comparison-section {
+    width: 94%;
+    margin: 15px auto;
+    padding: 60px 24px;
+    border-radius: 24px;
+  }
+
+  .section-heading {
+    font-size: 32px;
+  }
+
+  .section-subtext {
+    font-size: 16px;
+  }
+
+  .comparison-card {
+    padding: 32px 24px;
+  }
+
+  .card-title {
+    font-size: 24px;
+  }
+
+  .point-text {
+    font-size: 16px;
+  }
+}

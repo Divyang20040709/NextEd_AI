@@ -1,0 +1,328 @@
+body {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica",
+    "Arial", sans-serif;
+  background: #e0e5ec;
+  overflow-x: hidden;
+}
+
+/* Navbar container */
+.navbar-container {
+  width: 95%; /* Floating width */
+  max-width: 1400px;
+  margin: 20px auto 0 auto; /* Floating margin - 0 at bottom to allow 20px gap from dashboard */
+  background: rgba(255, 255, 255, 0.9); /* Glassy background */
+  box-shadow: var(--shadow-float);
+  border-radius: 50px; /* Pill shape */
+  position: sticky;
+  top: 20px; /* Floating from top */
+  z-index: 2005;
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.5); /* Subtle border */
+}
+
+/* Navbar inner */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 30px; /* Tighter padding for pill look */
+  height: 80px;
+}
+
+/* Logo section */
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.logo-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.logo-text {
+  font-size: 22px;
+  font-weight: 800;
+  background: var(--button-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+.logo-text.role-admin {
+  background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo-text.role-teacher {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Desktop nav links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+  background: rgba(244, 247, 251, 0.5); /* Subtle inner pill for links */
+  padding: 8px 30px;
+  border-radius: 30px;
+}
+
+.nav-link {
+  position: relative;
+  font-size: 15px;
+  font-weight: 600;
+  color: #555;
+  text-decoration: none;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--button-gradient);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary-blue);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 20px; /* Small dot under text */
+}
+
+/* Desktop login button */
+.login-button {
+  background: var(--button-gradient);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 30px; /* Pill button */
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: var(--shadow-button);
+}
+
+.login-button:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-button-hover);
+}
+
+.login-button.role-admin {
+  background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%);
+  box-shadow: 0 8px 20px rgba(255, 65, 108, 0.4);
+}
+
+.login-button.role-teacher {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  box-shadow: 0 8px 20px rgba(17, 153, 142, 0.4);
+}
+
+.login-button.has-notification,
+.mobile-login-button.has-notification {
+  position: relative;
+}
+
+.notification-dot {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 14px;
+  height: 14px;
+  background: #ff4d4d;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+  animation: pulse-dot 1.5s infinite;
+}
+
+@keyframes pulse-dot {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.7);
+  }
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 8px rgba(255, 77, 77, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 77, 77, 0);
+  }
+}
+
+/* Hamburger menu */
+.hamburger-menu {
+  display: none;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.hamburger-line {
+  position: absolute;
+  left: 50%;
+  width: 24px;
+  height: 3px;
+  background: var(--button-gradient);
+  border-radius: 2px;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.hamburger-line:nth-child(1) {
+  top: 9px;
+}
+.hamburger-line:nth-child(2) {
+  top: 15px;
+}
+.hamburger-line:nth-child(3) {
+  top: 21px;
+}
+
+.hamburger-menu.active .hamburger-line:nth-child(1) {
+  transform: translateX(-50%) rotate(45deg);
+  top: 15px;
+}
+.hamburger-menu.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+.hamburger-menu.active .hamburger-line:nth-child(3) {
+  transform: translateX(-50%) rotate(-45deg);
+  top: 15px;
+}
+
+/* Mobile menu */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 15px;
+  padding: 30px 40px;
+  background: white;
+  border-radius: 30px; /* Match navbar radius */
+  box-shadow: var(--shadow-card);
+  margin-top: 10px; /* Gap from navbar */
+  border: 1px solid rgba(16, 137, 211, 0.1);
+}
+
+.mobile-menu.active {
+  display: flex;
+}
+
+.mobile-nav-link {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333; /* Darker for readability */
+  text-decoration: none;
+  padding: 12px 16px;
+  border-radius: 12px; /* Inner radius */
+  background: #f8f9fd;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.mobile-nav-link:hover {
+  color: var(--primary-blue);
+  background: #eef7ff;
+}
+
+.mobile-login-button {
+  background: var(--button-gradient);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 14px 0;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 10px;
+  box-shadow: var(--shadow-button);
+}
+
+.mobile-login-button.role-admin {
+  background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%);
+  box-shadow: 0 8px 20px rgba(255, 65, 108, 0.4);
+}
+
+.mobile-login-button.role-teacher {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  box-shadow: 0 8px 20px rgba(17, 153, 142, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar-container {
+    width: 90%; /* Wider on mobile */
+    top: 15px;
+    margin: 15px auto;
+    border-radius: 24px;
+  }
+
+  .navbar {
+    padding: 10px 20px;
+    height: 70px;
+  }
+
+  .nav-links,
+  .login-button {
+    display: none;
+  }
+
+  .hamburger-menu {
+    display: flex;
+  }
+}

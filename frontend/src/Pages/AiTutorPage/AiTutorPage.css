@@ -1,0 +1,18 @@
+.aitutor-page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #E0E5EC;
+}
+
+.aitutor-content-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .aitutor-page-wrapper {
+    height: auto;
+  }
+}

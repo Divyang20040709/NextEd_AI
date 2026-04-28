@@ -1,0 +1,44 @@
+/* ChatBotPage.css */
+
+.chatbot-page-wrapper {
+  /* Ensure the page takes full viewport height */
+  min-height: 100vh;
+  width: 100%;
+  
+  /* Flex positioning to center the content */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  /* Transparent to let index.css background show */
+  background: transparent; 
+  
+  /* --- SPACING LOGIC --- */
+  /* Navbar takes approx 100px space (80px height + 20px top margin).
+     We add exactly 50px gap below it. 
+     Total Top Padding = 150px */
+  /* padding-top: 150px;  */
+  
+  /* Gap above the Footer */
+  /* padding-bottom: 50px; */
+  
+  /* Prevent main page scrolling */
+  overflow: hidden; 
+  box-sizing: border-box;
+}
+
+.chatbot-page-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .chatbot-page-wrapper {
+    /* Significantly less spacing on mobile to save screen real estate */
+    padding-top: 80px; 
+    padding-bottom: 20px;
+  }
+}

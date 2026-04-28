@@ -1,0 +1,261 @@
+/* Teacher Dashboard - Floating Layout */
+.td-root {
+  --navbar-height: 80px;
+  --footer-height: 180px;
+  width: 100%;
+  padding-top: calc(var(--navbar-height) + 20px); /* Account for floating nav */
+  padding-bottom: 20px;
+  background: transparent; /* Body bg shows through gaps */
+  font-family: var(--font-family);
+  display: flex;
+  justify-content: center;
+  height: 100vh; /* Fixed height for dashboard feel */
+  overflow: hidden; /* No scrolling on root, only in content */
+}
+
+/* Wrapper centers and limits width */
+.td-wrapper {
+  width: 98%;
+  max-width: 1600px;
+  margin: 0 auto; /* Center horizontally */
+  display: flex;
+  gap: 20px; /* GAP creates the floating separation */
+  height: calc(100vh - 120px); /* Height minus nav/padding */
+}
+
+/* SIDEBAR - Left Floating Card */
+.td-sidebar {
+  width: 280px;
+  background: #FFFFFF;
+  border-radius: var(--radius-card);
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-float);
+  height: 100%; /* Fill wrapper height */
+  /* Remove fixed positioning, make it flex item */
+  position: relative; 
+  left: auto;
+  top: auto;
+  bottom: auto;
+  transform: none; /* Reset transform for desktop default */
+  z-index: 50;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.td-sidebar-header h2 {
+  font-size: 24px;
+  font-weight: 800;
+  background: var(--button-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 40px;
+  padding-left: 10px;
+}
+
+.td-sidebar-nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto; /* Scrollable nav if needed */
+}
+
+.td-nav-item {
+  width: 100%;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 16px; /* Pill-ish */
+  background: transparent;
+  color: #666;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.td-nav-item:hover {
+  background: #F4F7FB;
+  color: var(--primary-blue);
+}
+
+.td-nav-item.active {
+  background: var(--button-gradient);
+  color: #FFFFFF;
+  box-shadow: 0 8px 20px rgba(16, 137, 211, 0.25);
+}
+
+.td-sidebar-footer {
+  padding-top: 20px;
+  margin-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.td-logout-btn {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #eee;
+  border-radius: 16px;
+  background: transparent;
+  color: #666;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.td-logout-btn:hover {
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
+  background: #F4F7FB;
+}
+
+/* MAIN CONTENT - Right Floating Card */
+.td-main-content {
+  flex: 1;
+  background: #FFFFFF;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-float);
+  padding: 40px;
+  height: 100%; /* Fill wrapper height */
+  overflow-y: auto; /* Internal scrolling */
+  margin-left: 0; /* Reset margin */
+  position: relative;
+}
+
+/* CONTENT SECTIONS */
+.td-page-header {
+  margin-bottom: 40px;
+}
+
+.td-page-header h1 {
+  font-size: 32px;
+  font-weight: 800;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.td-page-header p {
+  color: var(--text-placeholder);
+  font-size: 16px;
+}
+
+/* Stats Grid */
+.td-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.td-stat-card {
+  background: #F8F9FD; /* Slightly distinct from main content white */
+  padding: 30px;
+  border-radius: 24px;
+  border: none;
+  box-shadow: none; /* Flat style inside card */
+  transition: transform 0.2s ease;
+}
+
+.td-stat-card:hover {
+  transform: translateY(-4px);
+  background: #F0F4F8;
+}
+
+.td-stat-label {
+  color: var(--text-placeholder);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.td-stat-number {
+  font-size: 40px;
+  font-weight: 800;
+  background: var(--button-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.td-recent-activity {
+  background: #F8F9FD;
+  padding: 30px;
+  border-radius: 24px;
+}
+
+.td-recent-activity h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.td-activity-item {
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding: 16px 0;
+}
+
+.td-activity-icon {
+  border-radius: 16px; /* Squircle */
+}
+
+/* Mobile Toggle */
+.td-toggle-btn {
+  display: none; /* Only mobile */
+}
+
+.td-overlay {
+  display: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .td-wrapper {
+    gap: 0; /* Collapse gap */
+    width: 100%;
+    margin: 0;
+    height: auto; /* Allow flow */
+    min-height: 100vh;
+    display: block; /* Stack */
+  }
+
+  /* Sidebar becomes drawer */
+  .td-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 280px;
+    margin: 10px; /* Floating drawer */
+    height: calc(100vh - 20px);
+    transform: translateX(-110%); /* Hidden */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+  }
+
+  .td-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .td-main-content {
+    border-radius: 30px 30px 0 0; /* Top rounding only */
+    margin-top: 10px;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .td-toggle-btn {
+    display: block;
+    top: 30px; 
+    right: 20px;
+    z-index: 1001;
+  }
+}

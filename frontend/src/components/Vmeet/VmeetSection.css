@@ -1,0 +1,183 @@
+.vmeet-wrapper {
+    width: 95%;
+    max-width: 1400px;
+    margin: 20px auto; /* 20px gap from navbar and footer */
+    position: relative;
+    background: transparent;
+    z-index: 10; /* Above fog */
+}
+
+.vmeet-hero-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 40px;
+    background: #ffffff;
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-float);
+    border: 1px solid rgba(16, 137, 211, 0.1);
+    min-height: calc(100vh - 240px);
+    gap: 40px;
+}
+
+.vmeet-left-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.vmeet-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--primary-blue);
+    margin-bottom: 24px;
+    background: var(--button-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.vmeet-description {
+    font-size: 1.25rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+/* Right Cards Container */
+.vmeet-right-cards {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.vmeet-card {
+    background: white;
+    padding: 30px;
+    border-radius: 24px;
+    box-shadow: 0 15px 40px rgba(16, 137, 211, 0.15); /* Premium blue shadow */
+    flex: 1;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1.5px solid rgba(16, 137, 211, 0.1); /* Subtle blue border */
+}
+
+.vmeet-card:hover {
+    transform: translateY(-12px);
+    border-color: var(--secondary-blue);
+    box-shadow: 0 20px 50px rgba(16, 137, 211, 0.25);
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    background: #eef7ff;
+    color: var(--primary-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    margin-bottom: 20px;
+}
+
+.vmeet-card h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.vmeet-card p {
+    font-size: 0.95rem;
+    color: #777;
+    margin-bottom: 24px;
+}
+
+.vmeet-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1rem;
+    padding: 14px;
+    margin-top: auto;
+}
+
+/* Join Input Group */
+.join-input-group {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+}
+
+.join-input {
+    padding-right: 70px; /* Space for the Join button */
+}
+
+.vmeet-join-link-btn {
+    position: absolute;
+    right: 8px;
+    background: none;
+    border: none;
+    color: var(--primary-blue);
+    font-weight: 700;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 12px;
+    transition: background 0.2s;
+}
+
+.vmeet-join-link-btn:hover {
+    background: rgba(16, 137, 211, 0.1);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+    .vmeet-hero-container {
+        flex-direction: column;
+        padding: 40px 20px;
+        text-align: center;
+        gap: 50px;
+    }
+
+    .vmeet-left-content {
+        max-width: 100%;
+    }
+
+    .vmeet-title {
+        font-size: 2.5rem;
+    }
+
+    .vmeet-right-cards {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .vmeet-wrapper {
+        width: 90%;
+    }
+
+    .vmeet-right-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .vmeet-card {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .vmeet-title {
+        font-size: 2rem;
+    }
+}

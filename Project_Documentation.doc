@@ -1,0 +1,229 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+    <meta charset="utf-8">
+    <title>NextEd AI Project Documentation</title>
+    <style>
+        @page {
+            size: 8.5in 11in;
+            margin: 1in;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #4a90e2;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        h1 { color: #2c3e50; text-transform: uppercase; margin-bottom: 5px; }
+        h2 { color: #2980b9; border-left: 5px solid #2980b9; padding-left: 10px; margin-top: 30px; }
+        h3 { color: #16a085; }
+        .tech-stack-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .tech-stack-table th, .tech-stack-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .tech-stack-table th {
+            background-color: #f2f2f2;
+            color: #2c3e50;
+        }
+        .feature-box {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        .highlight { color: #e67e22; font-weight: bold; }
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #7f8c8d;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Project Documentation: NextEd AI</h1>
+    <p><strong>A Unified AI-Driven Educational Ecosystem</strong></p>
+    <p>Final Year Project | 2025-2026</p>
+</div>
+
+<h2>1. Introduction</h2>
+<p>
+    <strong>NextEd AI</strong> is a state-of-the-art educational platform designed to modernize the learning experience through the integration of Artificial Intelligence. Unlike traditional Learning Management Systems (LMS), NextEd AI acts as a proactive educational partner for both students and teachers. 
+</p>
+<p>
+    The platform bridges the gap between static content and dynamic learning by providing real-time AI tutoring, automated grading, and an advanced virtual classroom environment. It is built to be a one-stop solution for academic management, virtual interaction, and intelligent learning assistance.
+</p>
+
+<h2>2. Project Description</h2>
+<p>
+    The project is a full-stack web application featuring three distinct portals: <strong>Student, Teacher, and Admin</strong>. Each portal is tailored with specific tools to enhance educational productivity. 
+</p>
+<ul>
+    <li><strong>Student Portal:</strong> Focused on learning, doubt clearance via AI, and collaboration.</li>
+    <li><strong>Teacher Portal:</strong> Focused on classroom management, curriculum delivery, and assessment tracking.</li>
+    <li><strong>Admin Portal:</strong> Focused on platform security, user verification, and overall oversight.</li>
+</ul>
+
+<h2>3. Technology Stack</h2>
+<table class="tech-stack-table">
+    <tr>
+        <th>Layer</th>
+        <th>Technology Used</th>
+        <th>Purpose</th>
+    </tr>
+    <tr>
+        <td><strong>Frontend</strong></td>
+        <td>React.js (Vite), Tailwind CSS 4</td>
+        <td>UI/UX, Responsive Design, State Management</td>
+    </tr>
+    <tr>
+        <td><strong>Backend</strong></td>
+        <td>Node.js, Express.js (v5)</td>
+        <td>API Development, Business Logic</td>
+    </tr>
+    <tr>
+        <td><strong>Database</strong></td>
+        <td>MongoDB (Mongoose)</td>
+        <td>NoSQL Database for fast and flexible data storage</td>
+    </tr>
+    <tr>
+        <td><strong>Real-time</strong></td>
+        <td>Socket.io</td>
+        <td>Video Signaling (VMEET), Live Notifications</td>
+    </tr>
+    <tr>
+        <td><strong>AI Integration</strong></td>
+        <td>Gemini 2.0 Flash / Groq (Llama 3)</td>
+        <td>Intelligent Tutoring, Career Guidance, Study Tips</td>
+    </tr>
+    <tr>
+        <td><strong>Auth</strong></td>
+        <td>JWT, Bcrypt</td>
+        <td>Secure User Authentication & Password Hashing</td>
+    </tr>
+</table>
+
+<h2>4. Key Modules & Features (Detailed)</h2>
+
+<h3>4.1 AI Tutor & Personal Assistant</h3>
+<div class="feature-box">
+    <p>The core intelligence of the platform. It provides:</p>
+    <ul>
+        <li><strong>Talking AI Tutor:</strong> A specialized "Voice-optimized" mode where the AI behaves like a human tutor, keeping responses concise and engaging.</li>
+        <li><strong>Knowledge Base Analysis (RAG):</strong> Students can upload PDFs/Docs. The AI indexes this content and answers questions specifically from these materials.</li>
+        <li><strong>Multilingual Support:</strong> Integration for Hindi, English, and Gujarati languages to ensure no language barrier in learning.</li>
+        <li><strong>Smart Study Tips:</strong> Analyzes user's chat history to suggest personalized learning paths and tips.</li>
+    </ul>
+</div>
+
+<h3>4.2 VMEET (Advanced Virtual Meetings)</h3>
+<div class="feature-box">
+    <p>A custom-built video conferencing solution optimized for education:</p>
+    <ul>
+        <li><strong>Knock-to-Join:</strong> Teachers can control entry into the class via a "waiting room" system.</li>
+        <li><strong>Real-time Classroom Chat:</strong> Integrated chat with time-stamping for student-teacher interaction during live sessions.</li>
+        <li><strong>Hand Raising:</strong> Interactive feature for students to signal doubts without interrupting the flow.</li>
+        <li><strong>Media Controls:</strong> Full control over camera/microphone and screen sharing toggles.</li>
+        <li><strong>Host Reconciliation:</strong> Automatically reassigns host privileges if the teacher disconnects unexpectedly.</li>
+    </ul>
+</div>
+
+<h3>4.3 Classroom Management</h3>
+<div class="feature-box">
+    <p>The operational backbone of the portal:</p>
+    <ul>
+        <li><strong>Classroom Creation:</strong> Teachers generate unique codes to invite students.</li>
+        <li><strong>Post & Feed System:</strong> Share notes, announcements, and assignments in a social-media style feed.</li>
+        <li><strong>Student Directory:</strong> Easy tracking of enrolled students and their profiles.</li>
+    </ul>
+</div>
+
+<h3>4.4 Automated Exam System</h3>
+<div class="feature-box">
+    <p>Streamlined assessment process:</p>
+    <ul>
+        <li><strong>Exam Creator:</strong> Teachers can build MCQ-based tests with subject and grade tagging.</li>
+        <li><strong>Auto-Grading:</strong> Papers are instantly graded upon submission, providing immediate feedback to students.</li>
+        <li><strong>Performance Analytics:</strong> Students can view their marks, correct answers, and wrong choices instantly.</li>
+    </ul>
+</div>
+
+<h3>4.5 Admin Dashboard</h3>
+<div class="feature-box">
+    <p>Total control for maintaining platform integrity:</p>
+    <ul>
+        <li><strong>Approval Workflow:</strong> New teachers and students must be vetted by the admin before gaining access.</li>
+        <li><strong>User Management:</strong> Ability to ban/unban users and delete inactive classrooms.</li>
+        <li><strong>Global Statistics:</strong> Real-time count of active teachers, students, and classrooms.</li>
+    </ul>
+</div>
+
+<h2>5. System Architecture (Frontend & Backend)</h2>
+
+<h3>5.1 Frontend Architecture</h3>
+<p>
+    The frontend is built using <strong>React 19</strong> with **Vite** for optimized build times. It follows a modular pattern:
+</p>
+<ul>
+    <li><strong>Pages:</strong> Discrete views for Home, Login, Signup, Classroom, AI Chat, etc.</li>
+    <li><strong>Components:</strong> Reusable UI blocks like Modals, Input fields, and Sidebar.</li>
+    <li><strong>Services/Utils:</strong> Dedicated Axios instances for API calls and Socket listeners.</li>
+    <li><strong>Styling:</strong> Tailwind CSS 4 provides a modern, utility-first UI that is fully responsive.</li>
+</ul>
+
+<h3>5.2 Backend Architecture</h3>
+<p>
+    The backend is a <strong>RESTful API</strong> server powered by Node.js. 
+</p>
+<ul>
+    <li><strong>Controllers:</strong> Separate logic files for Admin, Auth, Chat, Exam, and Classrooms.</li>
+    <li><strong>Models:</strong> Mongoose schemas define structured data for Users, Exams, Posts, and AI Histories.</li>
+    <li><strong>Middleware:</strong> JWT extraction, Error logging, and File upload handling (Multer).</li>
+    <li><strong>Real-time Layer:</strong> Socket.io manages live signals for VMEET and notifications.</li>
+</ul>
+
+<h2>6. Use Cases</h2>
+
+<h3>6.1 Student Use Case</h3>
+<p>
+    <em>"A student joins a 'Cloud Computing' classroom. They upload their syllabus PDF to the Knowledge Base. Before the exam, they ask the AI Tutor to 'Summarize Chapter 3'. The AI provides a concise summary based on the teacher's notes. The student then takes an online MCQ exam and gets their result immediately."</em>
+</p>
+
+<h3>6.2 Teacher Use Case</h3>
+<p>
+    <em>"A teacher starts a VMEET session. They see 3 students 'knocking' to enter and approves them. During the class, a student 'raises hand', and the teacher clears their doubt. After class, the teacher posts the lecture video link in the classroom feed."</em>
+</p>
+
+<h2>7. Technical Highlights</h2>
+<ul>
+    <li><strong>RAG (Retrieval-Augmented Generation):</strong> Using local Knowledge Base context with LLMs to prevent AI hallucinations.</li>
+    <li><strong>Security:</strong> All routes are protected with JWT. Passwords are salted and hashed using Bcrypt.</li>
+    <li><strong>Performance:</strong> Use of Express 5 and Vite ensures minimal latency in API responses and UI transitions.</li>
+</ul>
+
+<h2>8. Conclusion</h2>
+<p>
+    <strong>NextEd AI</strong> is more than just a collaboration tool; it is a vision of the future of education. By automating mundane tasks like grading and administration, and providing high-quality AI-driven tutoring, it allows teachers to focus on teaching and students to focus on deeper learning.
+</p>
+
+<div class="footer">
+    &copy; 2025 NextEd AI Development Team. All Rights Reserved.
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1518 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NextEd AI - API Documentation</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f4f6f9;
+        color: #2c3e50;
+        padding: 40px 20px;
+      }
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      h1 {
+        font-size: 2rem;
+        color: #1a202c;
+        margin-bottom: 6px;
+      }
+      h1 span {
+        color: #e74c3c;
+      }
+      .subtitle {
+        color: #7f8c8d;
+        margin-bottom: 10px;
+      }
+      .base-url-box {
+        background: #fff;
+        border-left: 5px solid #e74c3c;
+        padding: 14px 20px;
+        border-radius: 6px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+      .base-url-box .label {
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: #e74c3c;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+      .base-url-box .url {
+        font-size: 1.05rem;
+        font-family: monospace;
+        color: #1a202c;
+        font-weight: 600;
+      }
+      .section-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #e74c3c;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin: 36px 0 14px;
+        border-bottom: 2px solid #e74c3c;
+        padding-bottom: 6px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+        margin-bottom: 12px;
+      }
+      thead th {
+        background: #2c3e50;
+        color: #fff;
+        padding: 12px 16px;
+        font-size: 0.82rem;
+        text-align: left;
+        letter-spacing: 0.5px;
+      }
+      tbody td {
+        padding: 12px 16px;
+        font-size: 0.88rem;
+        border-bottom: 1px solid #ecf0f1;
+        vertical-align: top;
+      }
+      tbody tr:last-child td {
+        border-bottom: none;
+      }
+      tbody tr:hover {
+        background: #fafbfc;
+      }
+      .api-name {
+        font-weight: 700;
+        color: #1a202c;
+      }
+      .method {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+      .GET {
+        background: #e8f5e9;
+        color: #2e7d32;
+      }
+      .POST {
+        background: #e3f2fd;
+        color: #1565c0;
+      }
+      .DELETE {
+        background: #fce4ec;
+        color: #c62828;
+      }
+      .PATCH {
+        background: #fff3e0;
+        color: #e65100;
+      }
+      .attr-list {
+        list-style: none;
+      }
+      .attr-list li {
+        padding: 2px 0;
+        font-family: monospace;
+        font-size: 0.85rem;
+        color: #34495e;
+      }
+      .attr-list li::before {
+        content: "▸ ";
+        color: #e74c3c;
+        font-size: 0.75rem;
+      }
+      .none-tag {
+        color: #95a5a6;
+        font-style: italic;
+        font-size: 0.85rem;
+      }
+      .separator {
+        height: 14px;
+      }
+      .postman-box {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+        overflow: hidden;
+        margin-top: 10px;
+      }
+      .postman-box .step {
+        display: flex;
+        gap: 14px;
+        padding: 13px 20px;
+        border-bottom: 1px solid #ecf0f1;
+        align-items: flex-start;
+      }
+      .postman-box .step:last-child {
+        border-bottom: none;
+      }
+      .step-num {
+        background: #e74c3c;
+        color: #fff;
+        font-size: 0.78rem;
+        font-weight: 700;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .step-text {
+        font-size: 0.9rem;
+        color: #2c3e50;
+      }
+      .step-text code {
+        background: #f4f6f9;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        color: #e74c3c;
+      }
+      .url-badge {
+        font-family: monospace;
+        font-size: 0.82rem;
+        background: #f4f6f9;
+        padding: 2px 8px;
+        border-radius: 4px;
+        color: #636e72;
+      }
+      @media print {
+        body {
+          background: #fff;
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>NextEd AI &mdash; <span>API Documentation</span></h1>
+      <p class="subtitle">
+        Internal reference for developers and team members. Last updated: March 10,
+        2026 (Final Project Handover & Full API Audit)
+      </p>
+
+      <div class="base-url-box">
+        <div class="label">Base URL</div>
+        <div class="url">http://localhost:5000</div>
+      </div>
+
+      <!-- AUTHENTICATION -->
+      <div class="section-title">Authentication</div>
+      <table>
+        <thead>
+          <tr>
+            <th width="160">API Name</th>
+            <th>Description</th>
+            <th width="260">Endpoint URL</th>
+            <th width="80">Method</th>
+            <th width="200">Required Attributes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="api-name">Student Signup</td>
+            <td>
+              Registers a new student. Account stays pending until admin
+              approves.
+            </td>
+            <td><span class="url-badge">/api/auth/signup/student</span></td>
+            <td><span class="method POST">POST</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>name</li>
+                <li>mobileNumber</li>
+                <li>email</li>
+                <li>password</li>
+                <li>institutionName</li>
+                <li>studentId</li>
+                <li>programName</li>
+                <li>courseDepartment</li>
+                <li>year</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Student Login</td>
+            <td>Authenticates student and returns a JWT token if approved.</td>
+            <td><span class="url-badge">/api/auth/login/student</span></td>
+            <td><span class="method POST">POST</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>email</li>
+                <li>password</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Teacher Signup</td>
+            <td>
+              Registers a new teacher. Pending admin approval before login is
+              allowed.
+            </td>
+            <td><span class="url-badge">/api/auth/signup/teacher</span></td>
+            <td><span class="method POST">POST</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>name</li>
+                <li>mobileNumber</li>
+                <li>email</li>
+                <li>password</li>
+                <li>institutionName</li>
+                <li>designation</li>
+                <li>department</li>
+                <li>subject</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Teacher Login</td>
+            <td>
+              Authenticates teacher. Fails if account is pending, rejected, or
+              banned.
+            </td>
+            <td><span class="url-badge">/api/auth/login/teacher</span></td>
+            <td><span class="method POST">POST</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>email</li>
+                <li>password</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Logout</td>
+            <td>Clears the current user session on client side.</td>
+            <td><span class="url-badge">/api/auth/logout</span></td>
+            <td><span class="method POST">POST</span></td>
+            <td><span class="none-tag">None</span></td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Delete Account</td>
+            <td>
+              Permanently removes a student or teacher account from the
+              database.
+            </td>
+            <td><span class="url-badge">/api/auth/delete-account</span></td>
+            <td><span class="method DELETE">DELETE</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>email</li>
+                <li>role (student / teacher)</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- ADMIN -->
+      <div class="section-title">Admin Module</div>
+      <table>
+        <thead>
+          <tr>
+            <th width="160">API Name</th>
+            <th>Description</th>
+            <th width="280">Endpoint URL</th>
+            <th width="80">Method</th>
+            <th width="200">Required Attributes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="api-name">Admin Signup</td>
+            <td>
+              Creates a new admin profile and returns a JWT token on success.
+            </td>
+            <td><span class="url-badge">/api/admin/signup</span></td>
+            <td><span class="method POST">POST</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>name</li>
+                <li>mobileNumber</li>
+                <li>email</li>
+                <li>password</li>
+                <li>institutionName</li>
+                <li>designation</li>
+                <li>department</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Admin Login</td>
+            <td>Logs in as administrator, returns JWT token.</td>
+            <td><span class="url-badge">/api/admin/login</span></td>
+            <td><span class="method POST">POST</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>email</li>
+                <li>password</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Delete Admin Account</td>
+            <td>Permanently removes the admin profile.</td>
+            <td>
+              <span class="url-badge">/api/admin/delete-account/:email</span>
+            </td>
+            <td><span class="method DELETE">DELETE</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>email (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Teacher Statistics</td>
+            <td>Get stats for approved, pending, and banned teachers.</td>
+            <td><span class="url-badge">/api/admin/teacher-stats</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td><span class="none-tag">None</span></td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Teacher Requests</td>
+            <td>
+              List all pending teacher applications waiting for admin review.
+            </td>
+            <td><span class="url-badge">/api/admin/teacher-requests</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td><span class="none-tag">None</span></td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">All Teachers</td>
+            <td>Get list of all approved teachers.</td>
+            <td><span class="url-badge">/api/admin/all-teachers</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td><span class="none-tag">None</span></td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Teacher Profile</td>
+            <td>Get full teacher details, statistics, and classrooms.</td>
+            <td>
+              <span class="url-badge">/api/admin/teacher/:teacherId</span>
+            </td>
+            <td><span class="method GET">GET</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>teacherId (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Approve Teacher</td>
+            <td>Set teacher account status to approved so they can login.</td>
+            <td>
+              <span class="url-badge">/api/admin/approve-teacher/:teacherId</span>
+            </td>
+            <td><span class="method PATCH">PATCH</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>teacherId (URL Parameter)</li>
+                <li>approvalMessage</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Reject Teacher</td>
+            <td>
+              Reject teacher and delete record so they can re-apply fresh.
+            </td>
+            <td>
+              <span class="url-badge">/api/admin/reject-teacher/:teacherId</span>
+            </td>
+            <td><span class="method PATCH">PATCH</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>teacherId (URL Parameter)</li>
+                <li>rejectedReason</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Ban Teacher</td>
+            <td>Restricts a teacher from logging into the platform.</td>
+            <td><span class="url-badge">/api/admin/ban-teacher/:teacherId</span></td>
+            <td><span class="method PATCH">PATCH</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>teacherId (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Unban Teacher</td>
+            <td>Restores a previously banned teacher account.</td>
+            <td><span class="url-badge">/api/admin/unban-teacher/:teacherId</span></td>
+            <td><span class="method PATCH">PATCH</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>teacherId (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Delete Teacher</td>
+            <td>
+              Permanently removes teacher and cascades to delete all their
+              classrooms.
+            </td>
+            <td>
+              <span class="url-badge">/api/admin/delete-teacher/:teacherId</span>
+            </td>
+            <td><span class="method DELETE">DELETE</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>teacherId (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Banned Teachers</td>
+            <td>List all teachers who are currently restricted from login.</td>
+            <td><span class="url-badge">/api/admin/banned-teachers</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td><span class="none-tag">None</span></td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">All Students</td>
+            <td>Get list of all registered students.</td>
+            <td><span class="url-badge">/api/admin/all-students</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td><span class="none-tag">None</span></td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Banned Students</td>
+            <td>List all students who are currently restricted from login.</td>
+            <td><span class="url-badge">/api/admin/banned-students</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td><span class="none-tag">None</span></td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Student Stats</td>
+            <td>Get counts for active and banned students.</td>
+            <td><span class="url-badge">/api/admin/student-stats</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td><span class="none-tag">None</span></td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Student Requests</td>
+            <td>List all student registrations (pending/approved).</td>
+            <td><span class="url-badge">/api/admin/student-requests</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td><span class="none-tag">None</span></td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Approve Student</td>
+            <td>Approve a student account for login.</td>
+            <td>
+              <span class="url-badge">/api/admin/approve-student/:studentId</span>
+            </td>
+            <td><span class="method PATCH">PATCH</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>studentId (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Reject Student</td>
+            <td>Delete a student application.</td>
+            <td>
+              <span class="url-badge">/api/admin/reject-student/:studentId</span>
+            </td>
+            <td><span class="method PATCH">PATCH</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>studentId (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Student Profile</td>
+            <td>Get full student profile and enrollment data.</td>
+            <td><span class="url-badge">/api/admin/student/:studentId</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>studentId (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Ban Student</td>
+            <td>
+              Restrict a student account. User gets real-time notification via
+              socket.
+            </td>
+            <td><span class="url-badge">/api/admin/ban-student/:studentId</span></td>
+            <td><span class="method PATCH">PATCH</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>studentId (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Unban Student</td>
+            <td>Restores a previously banned student account.</td>
+            <td><span class="url-badge">/api/admin/unban-student/:studentId</span></td>
+            <td><span class="method PATCH">PATCH</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>studentId (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Delete Student</td>
+            <td>Permanently removes a student record and their enrollments.</td>
+            <td>
+              <span class="url-badge">/api/admin/delete-student/:studentId</span>
+            </td>
+            <td><span class="method DELETE">DELETE</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>studentId (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Delete Classroom (Admin)</td>
+            <td>Admin can delete any classroom and its associated posts.</td>
+            <td><span class="url-badge">/api/admin/classroom/:classroomId</span></td>
+            <td><span class="method DELETE">DELETE</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>classroomId (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Create Post (Admin)</td>
+            <td>Admin can create announcements within any classroom.</td>
+            <td>
+              <span class="url-badge"
+                >/api/admin/classroom/:classroomId/post</span
+              >
+            </td>
+            <td><span class="method POST">POST</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>classroomId (URL Parameter)</li>
+                <li>title</li>
+                <li>description</li>
+                <li>teacherName (optional)</li>
+                <li>videoLink (optional)</li>
+                <li>files (optional)</li>
+                <li>allowStudentUpload (optional)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Update Post (Admin)</td>
+            <td>Modify any post as administrator.</td>
+            <td><span class="url-badge">/api/admin/post/:postId</span></td>
+            <td><span class="method PUT">PUT</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>postId (URL Parameter)</li>
+                <li>title</li>
+                <li>description</li>
+                <li>videoLink (optional)</li>
+                <li>files (optional)</li>
+                <li>allowStudentUpload (optional)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Delete Post (Admin)</td>
+            <td>Permanently remove a post as administrator.</td>
+            <td><span class="url-badge">/api/admin/post/:postId</span></td>
+            <td><span class="method DELETE">DELETE</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>postId (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Classroom Posts (Admin)</td>
+            <td>Retrieve all posts published in a specific classroom (Admin view).</td>
+            <td><span class="url-badge">/api/admin/classroom/:classroomId/posts</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>classroomId (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Classroom Students</td>
+            <td>Get all students enrolled in a specific classroom.</td>
+            <td>
+              <span class="url-badge">/api/admin/classroom/:classroomId/students</span>
+            </td>
+            <td><span class="method GET">GET</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>classroomId (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">All Global Posts</td>
+            <td>Retrieve all published posts across every classroom in the system (Super Admin view).</td>
+            <td><span class="url-badge">/api/admin/all-posts</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td><span class="none-tag">None (Requires JWT)</span></td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">All Global Exams</td>
+            <td>Retrieve all created exams across every classroom in the system (Super Admin view).</td>
+            <td><span class="url-badge">/api/admin/all-exams</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td><span class="none-tag">None (Requires JWT)</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- CHATBOT -->
+      <div class="section-title">Chatbot &amp; Study Tips</div>
+      <table>
+        <thead>
+          <tr>
+            <th width="160">API Name</th>
+            <th>Description</th>
+            <th width="260">Endpoint URL</th>
+            <th width="80">Method</th>
+            <th width="200">Required Attributes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="api-name">AI Chat</td>
+            <td>
+              Main AI interaction endpoint. Sends user message and gets AI
+              response.
+            </td>
+            <td><span class="url-badge">/api/chat</span></td>
+            <td><span class="method POST">POST</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>chatId</li>
+                <li>message</li>
+                <li>userId</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Get Chat History</td>
+            <td>Fetch all saved conversation sessions for a specific user.</td>
+            <td><span class="url-badge">/api/history</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>userId (Query Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Create Chat Session</td>
+            <td>Initialize a new blank chat session for a user.</td>
+            <td><span class="url-badge">/api/history</span></td>
+            <td><span class="method POST">POST</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>userId</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Delete History</td>
+            <td>Delete a specific chat session from the database.</td>
+            <td><span class="url-badge">/api/history/:id</span></td>
+            <td><span class="method DELETE">DELETE</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>id (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Generate Study Tips</td>
+            <td>
+              Analyzes user's past chats and generates personalized study tips
+              via AI.
+            </td>
+            <td><span class="url-badge">/api/study-tips</span></td>
+            <td><span class="method POST">POST</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>userId</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Get Saved Tips</td>
+            <td>
+              Retrieve all previously generated study tip sessions for a user.
+            </td>
+            <td><span class="url-badge">/api/study-tips</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>userId (Query Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Delete Study Tip</td>
+            <td>Remove a specific study tip session from history.</td>
+            <td><span class="url-badge">/api/study-tips/:id</span></td>
+            <td><span class="method DELETE">DELETE</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>id (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- AI TUTOR -->
+      <div class="section-title">AI Tutor (Voice)</div>
+      <table>
+        <thead>
+          <tr>
+            <th width="160">API Name</th>
+            <th>Description</th>
+            <th width="260">Endpoint URL</th>
+            <th width="80">Method</th>
+            <th width="200">Required Attributes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="api-name">Talking Tutor Chat</td>
+            <td>
+              Send message to voice-enabled AI tutor. Supports English, Hindi,
+              Gujarati.
+            </td>
+            <td><span class="url-badge">/api/aitutor/chat</span></td>
+            <td><span class="method POST">POST</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>chatId</li>
+                <li>message</li>
+                <li>language</li>
+                <li>userId</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Tutor History</td>
+            <td>Get saved voice tutor sessions for a user.</td>
+            <td><span class="url-badge">/api/aitutor/history</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>userId (Query Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Create Tutor Session</td>
+            <td>Start a new talking tutor session record.</td>
+            <td><span class="url-badge">/api/aitutor/history</span></td>
+            <td><span class="method POST">POST</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>userId</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Delete Tutor Session</td>
+            <td>Permanently remove a voice tutor session from history.</td>
+            <td><span class="url-badge">/api/aitutor/history/:id</span></td>
+            <td><span class="method DELETE">DELETE</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>id (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- EXAM MODULE -->
+      <div class="section-title">Exam Module</div>
+      <table>
+        <thead>
+          <tr>
+            <th width="160">API Name</th>
+            <th>Description</th>
+            <th width="260">Endpoint URL</th>
+            <th width="80">Method</th>
+            <th width="200">Required Attributes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="api-name">Create Exam</td>
+            <td>Teacher creates a new exam for a specific classroom.</td>
+            <td><span class="url-badge">/api/exams/create</span></td>
+            <td><span class="method POST">POST</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>classroomId</li>
+                <li>teacherName</li>
+                <li>examName</li>
+                <li>subject</li>
+                <li>questions (Array)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Classroom Exams</td>
+            <td>Fetch all exams belonging to a classroom.</td>
+            <td><span class="url-badge">/api/exams/classroom/:classroomId</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>classroomId (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Get Exam Details</td>
+            <td>Retrieve single exam structure and questions.</td>
+            <td><span class="url-badge">/api/exams/:examId</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>examId (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Delete Exam</td>
+            <td>Permanently remove an exam and its submissions.</td>
+            <td><span class="url-badge">/api/exams/:examId</span></td>
+            <td><span class="method DELETE">DELETE</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>examId (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Exam Submissions</td>
+            <td>Get list of all student attempts for a specific exam.</td>
+            <td><span class="url-badge">/api/exams/:examId/submissions</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>examId (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Submit Exam</td>
+            <td>Student submits their answers for evaluation.</td>
+            <td><span class="url-badge">/api/exams/submit</span></td>
+            <td><span class="method POST">POST</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>examId</li>
+                <li>studentId</li>
+                <li>studentName</li>
+                <li>rollNumber</li>
+                <li>answers (Array)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Student Submissions</td>
+            <td>Get all exam history for a specific student.</td>
+            <td><span class="url-badge">/api/exams/student-submissions/:studentEmail</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>studentEmail (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- TEACHER MODULE -->
+      <div class="section-title">Teacher APIs</div>
+      <table>
+        <thead>
+          <tr>
+            <th width="160">API Name</th>
+            <th>Description</th>
+            <th width="260">Endpoint URL</th>
+            <th width="80">Method</th>
+            <th width="200">Required Attributes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="api-name">Resend Request</td>
+            <td>Teacher can resend approval request to admin after a rejection.</td>
+            <td><span class="url-badge">/api/teacher/resend-request/:teacherId</span></td>
+            <td><span class="method PATCH">PATCH</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>teacherId (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="section-title">Classroom &amp; Posts</div>
+      <table>
+        <thead>
+          <tr>
+            <th width="160">API Name</th>
+            <th>Description</th>
+            <th width="270">Endpoint URL</th>
+            <th width="80">Method</th>
+            <th width="200">Required Attributes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="api-name">Create Classroom</td>
+            <td>
+              Teacher creates a virtual classroom. A unique code is
+              auto-generated.
+            </td>
+            <td><span class="url-badge">/api/classroom/create</span></td>
+            <td><span class="method POST">POST</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>subject</li>
+                <li>classGrade</li>
+                <li>division</li>
+                <li>teacherEmail</li>
+                <li>teacherName</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Join Classroom</td>
+            <td>
+              Student joins a classroom using the 6-character unique code shared
+              by teacher.
+            </td>
+            <td><span class="url-badge">/api/classroom/join</span></td>
+            <td><span class="method POST">POST</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>code</li>
+                <li>studentEmail</li>
+                <li>studentName</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Teacher Classrooms</td>
+            <td>Fetch all classrooms owned by a specific teacher email.</td>
+            <td>
+              <span class="url-badge">/api/classroom/teacher/:teacherEmail</span>
+            </td>
+            <td><span class="method GET">GET</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>teacherEmail (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Get Classroom</td>
+            <td>Fetch detailed information for a specific classroom by ID.</td>
+            <td><span class="url-badge">/api/classroom/:id</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>id (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Delete Classroom</td>
+            <td>Teacher deletes their own classroom and all its posts.</td>
+            <td><span class="url-badge">/api/classroom/:id</span></td>
+            <td><span class="method DELETE">DELETE</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>id (URL Parameter)</li>
+                <li>teacherEmail (Body)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Student Classrooms</td>
+            <td>List all classrooms a student is currently enrolled in.</td>
+            <td><span class="url-badge">/api/classroom/student/:studentEmail</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>studentEmail (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Create Post</td>
+            <td>
+              Teacher publishes a material post to classroom. Students get
+              real-time notification.
+            </td>
+            <td><span class="url-badge">/api/post/create</span></td>
+            <td><span class="method POST">POST</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>classroomId</li>
+                <li>title</li>
+                <li>description</li>
+                <li>teacherName</li>
+                <li>videoLink (optional)</li>
+                <li>files (optional)</li>
+                <li>allowStudentUpload (optional)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Get Classroom Posts</td>
+            <td>
+              Retrieve all posts published in a specific classroom, sorted
+              newest first.
+            </td>
+            <td><span class="url-badge">/api/post/classroom/:classroomId</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>classroomId (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Update Post</td>
+            <td>Teacher modifies an existing classroom post.</td>
+            <td><span class="url-badge">/api/post/:id</span></td>
+            <td><span class="method PUT">PUT</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>id (URL Parameter)</li>
+                <li>title (optional)</li>
+                <li>description (optional)</li>
+                <li>videoLink (optional)</li>
+                <li>files (optional)</li>
+                <li>allowStudentUpload (optional)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Delete Post</td>
+            <td>
+              Soft-deletes a post. Students see a deleted notice instead of the
+              content.
+            </td>
+            <td><span class="url-badge">/api/post/:id</span></td>
+            <td><span class="method DELETE">DELETE</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>id (URL Parameter)</li>
+                <li>deletedBy (Body)</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- SUBMISSIONS -->
+      <div class="section-title">Post Submissions</div>
+      <table>
+        <thead>
+          <tr>
+            <th width="160">API Name</th>
+            <th>Description</th>
+            <th width="260">Endpoint URL</th>
+            <th width="80">Method</th>
+            <th width="200">Required Attributes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="api-name">Submit to Post</td>
+            <td>Student submits work or files for a specific post.</td>
+            <td><span class="url-badge">/api/submission/submit</span></td>
+            <td><span class="method POST">POST</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>postId</li>
+                <li>studentId</li>
+                <li>studentName</li>
+                <li>message (optional)</li>
+                <li>files (optional)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Get Submissions</td>
+            <td>Teacher retrieves all student submissions for a specific post.</td>
+            <td><span class="url-badge">/api/submission/post/:postId</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>postId (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Specific Submission</td>
+            <td>Fetch a single student's submission for editing or review.</td>
+            <td><span class="url-badge">/api/submission/post/:postId/student/:studentId</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>postId (URL Parameter)</li>
+                <li>studentId (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- KNOWLEDGE BASE -->
+      <div class="section-title">Knowledge Base</div>
+      <table>
+        <thead>
+          <tr>
+            <th width="160">API Name</th>
+            <th>Description</th>
+            <th width="260">Endpoint URL</th>
+            <th width="80">Method</th>
+            <th width="200">Required Attributes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="api-name">Get All Materials</td>
+            <td>Returns all documents uploaded to the AI knowledge base.</td>
+            <td><span class="url-badge">/api/knowledge</span></td>
+            <td><span class="method GET">GET</span></td>
+            <td><span class="none-tag">None</span></td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Upload Material</td>
+            <td>
+              Upload PDF, DOCX, or text files as context for the AI chatbot. Use
+              form-data.
+            </td>
+            <td><span class="url-badge">/api/knowledge</span></td>
+            <td><span class="method POST">POST</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>title</li>
+                <li>details</li>
+                <li>files (Form-Data)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="separator">
+            <td colspan="5"></td>
+          </tr>
+          <tr>
+            <td class="api-name">Delete Material</td>
+            <td>
+              Remove a document from the knowledge base. File is also deleted
+              from disk.
+            </td>
+            <td><span class="url-badge">/api/knowledge/:id</span></td>
+            <td><span class="method DELETE">DELETE</span></td>
+            <td>
+              <ul class="attr-list">
+                <li>id (URL Parameter)</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- POSTMAN GUIDE -->
+      <div class="section-title">Postman Usage Guide</div>
+      <div class="postman-box">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            Open Postman and click <strong>Environments</strong>. Create a new
+            environment and add a variable <code>base_url</code> set to
+            <code>http://localhost:5000</code>. Use <code>{{base_url}}</code> in
+            all your request URLs.
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            For all <strong>POST / PATCH / DELETE</strong> requests that send
+            data in body, go to <strong>Headers</strong> tab and add:
+            <code>Content-Type</code> = <code>application/json</code>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            To add request data, go to <strong>Body</strong> tab &rarr; select
+            <strong>raw</strong> &rarr; switch format to <strong>JSON</strong>.
+            Then type your JSON like:
+            <code>{ "email": "test@mail.com", "password": "123456" }</code>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            For file uploads (Knowledge Base), go to
+            <strong>Body</strong> &rarr; select <strong>form-data</strong>. Set
+            key type to <strong>File</strong> for the files field and select
+            your document.
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-text">
+            For routes with <code>:id</code> in URL, replace it with the actual
+            MongoDB ID. Example: <code>{{base_url}}/api/history/65a4bc...</code>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">6</div>
+          <div class="step-text">
+            For protected admin routes, after login copy the
+            <code>token</code> from the response. In Postman, go to
+            <strong>Authorization</strong> tab &rarr; select
+            <strong>Bearer Token</strong> &rarr; paste the token.
+          </div>
+        </div>
+      </div>
+
+      <p
+        style="
+          margin-top: 30px;
+          font-size: 0.78rem;
+          color: #b2bec3;
+          text-align: center;
+        "
+      >
+        NextEd AI &bull; Internal API Reference &bull; Not for public
+        distribution
+      </p>
+    </div>
+  </body>
+</html>
